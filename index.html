@@ -1,19 +1,123 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>
-      "Where's that from?"
-    </title>
-    <style>
-      body {
-          background-color:#eee;
-      }
-    </style>
-  </head>
-  <body>
-    <div>
-      Movie or TV Show Name:
-    </div>
-    <input type="text" id="moviename" placeholder="Stranger Things, Avengers: Endgame" />
-  </body>
+	<head>
+		<title>
+			"Where's that from?"
+		</title>
+		<style>
+			body {
+				background-color:#eee;
+			}
+			.boxes {
+				margin:50px 0px 0px 0px;
+				color:#444;
+				text-align:center;
+			}
+			.title {
+				font-size:30px;
+				width:100%;
+
+			}
+			input[type=text] {
+				width:50%;
+				position:relative;
+				left:0%;
+				height:40px;
+				padding:0px 15px;
+				font-family:Times New Roman, Times;
+				border:2px solid #ccc;
+				border-radius:3px;
+				font-size:20px;
+				margin:10px 0px 0px 0px;
+				max-width:400px;
+			}
+			button {
+				width:120px;
+				background-color:#696969;
+				border-radius:10px;
+				color:white;
+				height:35px;
+				font-size:17px;
+				box-shadow:0px;
+				cursor:pointer;
+				border:0px;
+			}
+		</style>
+		<script>
+
+			function letsgo() {
+
+			searchquery = "";
+
+			if(document.getElementById('quote').value!=="") {
+				if(document.getElementById('quotecheck').checked===true)
+					searchquery = searchquery + '"'+ document.getElementById('quote').value +'" ';
+				else
+					searchquery = searchquery + document.getElementById('quote').value + " ";
+			}
+
+			if(document.getElementById('moviename').value!=="") {
+				if(document.getElementById('moviecheck').checked===true)
+					searchquery = searchquery + 'intitle:"'+ document.getElementById('moviename').value +'" ';
+				else
+					searchquery = searchquery + 'intitle:'+ document.getElementById('moviename').value +' ';
+			}
+
+			if(document.getElementById('yearepisode').value!=="") {
+				if(document.getElementById('yearepisodecheck').checked===true)
+					searchquery = searchquery + 'intitle:"'+ document.getElementById('yearepisode').value +'" ';
+				else
+					searchquery = searchquery + 'intitle:'+ document.getElementById('yearepisode').value +' ';
+			}
+
+			window.location.href = 'https://www.google.com/search?q=site:springfieldspringfield.co.uk ' + searchquery;
+
+			}
+		</script>
+	</head>
+	<body>
+		<div id="formbox">
+
+			<div class="boxes">
+				<div class="title">
+					Movie or TV Show Name
+				</div>
+				<br />
+				<input type="text" id="moviename" placeholder="Stranger Things, Avatar" />
+				<label>
+					<input type="checkbox" id="moviecheck" />
+					Exact?
+				</label>
+			</div>
+
+			<div class="boxes">
+				<div class="title">
+					Episode or Year
+				</div>
+				<br />
+				<input type="text" id="yearepisode" placeholder="S01E03, 2012" />
+				<label>
+					<input type="checkbox" id="yearepisodecheck" />
+					Exact?
+				</label>
+			</div>
+
+			<div class="boxes">
+				<div class="title">
+					Quote
+				</div>
+				<br />
+				<input type="text" id="quote" placeholder="I'm gonna make him an offer he can't refuse" />
+				<label>
+					<input type="checkbox" id="quotecheck" />
+					Exact?
+				</label>
+			</div>
+
+			<div class="boxes">
+				<button onclick="letsgo()">Go!</button>
+			</div>
+
+		</div>
+	</body>
 </html>
